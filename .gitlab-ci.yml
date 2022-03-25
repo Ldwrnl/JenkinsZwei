@@ -1,6 +1,7 @@
 stages: 
     - build
     - test
+    - deploy
 
 build website: 
     image: node:16-alpine
@@ -24,6 +25,13 @@ test website:
         - serve -s build &
         - sleep 20
         - curl http://localhost:3000 | grep "React App"
+        - npm install
 
+deploy to heroku:
+    stage: deploy
+    before_script:
+        - npm install --global surge
+    script:
+        - surge --project ./public --domain https://$PRODUCTION_DOMAIN
 
 
