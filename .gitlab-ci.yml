@@ -3,6 +3,10 @@ stages:
     - test
     - deploy
 
+variables:
+  STAGING_DOMAIN: avabucks-staging.surge.sh
+  PRODUCTION_DOMAIN: avabucks.surge.sh
+
 build website: 
     image: node:16-alpine
     stage: build
